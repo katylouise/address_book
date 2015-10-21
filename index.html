@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="AddressBook">
-<head>
-  <meta charset="utf-8">
-  <title>Address Book</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/contactsController.js"></script>
-</head>
-<body ng-controller="ContactsController as contactCtrl">
-
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Address Book</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/contactsController.js"></script>
+  </head>
+  <body ng-controller="ContactsController as contactCtrl">
+    <div>
+        <form class="form-horizontal">
+          <input type="text" >
+          <button class="btn">Search</button>
+        </form>
+        <button class="btn" ng-click="contactCtrl.showAllContacts()">See All Contacts</button>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList.contacts">
+          <ul>
+            <li>{{ contact.first_name }}</li>
+            <li>{{ contact.surname }}</li>
+            <li>{{ contact.address }}</li>
+            <li>{{ contact.phone_number }}</li>
+            <li>{{ contact.email }}</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+  </body>
 </html>
