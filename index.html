@@ -13,20 +13,31 @@
   <body ng-controller="ContactsController as contactCtrl">
     <div>
         <form class="form-horizontal">
-          <input type="text" >
-          <button class="btn search-button">Search</button>
+          <input type="text" ng-model="contactCtrl.searchTerm">
+          <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
         </form>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
-          <ul>
-            <li>{{ contact.first_name }}</li>
-            <li>{{ contact.surname }}</li>
-            <li>{{ contact.address }}</li>
-            <li>{{ contact.phone_number }}</li>
-            <li>{{ contact.email }}</li>
+        <div class="allContacts">
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy:   'surname'">
+              <ul>
+                <li>{{ contact.first_name }}</li>
+                <li>{{ contact.surname }}</li>
+                <li>{{ contact.address }}</li>
+                <li>{{ contact.phone_number }}</li>
+                <li>{{ contact.email }}</li>
+              </ul>
+            </li>
           </ul>
-          </li>
-        </ul>
+        </div>
+        <div class="singleContact">
+          <ul>
+            <li>{{ contactCtrl.contact.first_name }}</li>
+            <li>{{ contactCtrl.contact.surname }}</li>
+            <li>{{ contactCtrl.contact.address }}</li>
+            <li>{{ contactCtrl.contact.phone_number }}</li>
+            <li>{{ contactCtrl.contact.email }}</li>
+          </ul>
+        </div>
       </div>
   </body>
 </html>

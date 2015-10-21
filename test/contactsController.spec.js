@@ -50,7 +50,7 @@ describe ('ContactsController', function() {
       ctrl.searchTerm = 'Gareth';
       ctrl.searchForContact();
       httpBackend.flush();
-      expect(ctrl.contactsList[0].contacts).toEqual(contacts[0]);
+      expect(ctrl.contactsList[0].contacts[0]).toEqual(contacts[0]);
     });
   });
 
