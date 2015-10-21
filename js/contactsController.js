@@ -9,6 +9,6 @@ addressBookApp.controller('ContactsController', ['$resource', function($resource
   }
 
   self.searchForContact = function() {
-    var contact = searchResource.get({ id: })
+    //var contact = searchResource.get({ id: })
   }
 }]);
