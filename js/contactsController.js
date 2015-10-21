@@ -4,11 +4,12 @@ addressBookApp.controller('ContactsController', ['$resource', function($resource
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
   var searchResource = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id'});
 
-  self.showAllContacts = function() {
-    self.contactsList = contactsResource.query();
-  }
+  self.contactsList = contactsResource.query();
+
 
   self.searchForContact = function() {
     //var contact = searchResource.get({ id: })
   }
+
+
 }]);

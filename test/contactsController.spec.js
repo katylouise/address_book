@@ -7,10 +7,6 @@ describe ('ContactsController', function() {
     ctrl = $controller('ContactsController');
   }));
 
-  it('initialises with an empty contacts list', function() {
-    expect(ctrl.contactsList).toBeUndefined();
-  });
-
   describe('displaying contacts', function() {
     var contacts = [
       {
@@ -46,7 +42,6 @@ describe ('ContactsController', function() {
     }));
 
     it('displays contacts list', function() {
-      ctrl.showAllContacts();
       httpBackend.flush();
       expect(ctrl.contactsList[0].contacts).toEqual(contacts);
     });
@@ -58,5 +53,11 @@ describe ('ContactsController', function() {
       expect(ctrl.contactsList[0].contacts).toEqual(contacts[0]);
     });
   });
+
+  // describe('adding contacts', function() {
+  //   it('can display a form to add a contact', function() {
+  //     ctrl.addContact();
+  //   });
+  // });
 
 });

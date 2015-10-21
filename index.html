@@ -16,9 +16,8 @@
           <input type="text" >
           <button class="btn search-button">Search</button>
         </form>
-        <button class="btn show-all-button" ng-click="contactCtrl.showAllContacts()">See All Contacts</button>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList">
+          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
           <ul>
             <li>{{ contact.first_name }}</li>
             <li>{{ contact.surname }}</li>
