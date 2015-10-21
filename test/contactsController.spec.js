@@ -50,5 +50,13 @@ describe ('ContactsController', function() {
       httpBackend.flush();
       expect(ctrl.contactsList[0].contacts).toEqual(contacts);
     });
+
+    it('can display a single contact', function() {
+      ctrl.searchTerm = 'Gareth';
+      ctrl.searchForContact();
+      httpBackend.flush();
+      expect(ctrl.contactsList[0].contacts).toEqual(contacts[0]);
+    });
   });
+
 });
