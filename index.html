@@ -18,7 +18,7 @@
         </form>
         <button class="btn" ng-click="contactCtrl.showAllContacts()">See All Contacts</button>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList.contacts">
+          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList">
           <ul>
             <li>{{ contact.first_name }}</li>
             <li>{{ contact.surname }}</li>

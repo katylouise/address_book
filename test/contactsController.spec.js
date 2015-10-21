@@ -35,9 +35,20 @@ describe ('ContactsController', function() {
       },
     ];
 
+    var httpBackend;
+    beforeEach(inject(function($httpBackend) {
+      httpBackend = $httpBackend;
+      httpBackend
+      .when("GET", "https://fast-gorge.herokuapp.com/contacts")
+      .respond(
+        [{ contacts: contacts }]
+      );
+    }));
+
     it('displays contacts list', function() {
       ctrl.showAllContacts();
-      expect(ctrl.contactsList.contacts).toEqual(contacts);
+      httpBackend.flush();
+      expect(ctrl.contactsList[0].contacts).toEqual(contacts);
     });
   });
 });
