@@ -1,0 +1,1 @@
+var addressBookApp = angular.module('AddressBook', ['ngResource']);
