@@ -1,0 +1,3 @@
+addressBookApp.controller('ContactsController', [function() {
+
+}]);
