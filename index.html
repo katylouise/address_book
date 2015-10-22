@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Address Book</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/addressbook.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -16,8 +17,9 @@
           <input type="text" ng-model="contactCtrl.searchTerm">
           <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
           <button class="btn all-contacts-button" ng-click="contactCtrl.showAllContacts()">Show All Contacts</button>
+          <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
         </form>
-        <div class="allContacts">
+        <div class="all-contacts">
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
               <ul>
@@ -30,7 +32,7 @@
             </li>
           </ul>
         </div>
-        <div class="singleContact">
+        <div class="single-contact">
           <ul>
             <li>{{ contactCtrl.contact.first_name }}</li>
             <li>{{ contactCtrl.contact.surname }}</li>
@@ -39,6 +41,21 @@
             <li>{{ contactCtrl.contact.email }}</li>
           </ul>
         </div>
+      </div>
+      <div class="add-contact-form">
+        <form>
+          <label for="firstname">First Name:</label>
+          <input type="text" id="firstname">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname">
+          <label for="address">Address:</label>
+          <textarea id="address"></textarea>
+          <label for="phonenumber">Phone Number:</label>
+          <input type="text" id="phonenumber">
+          <label for="email">Email:</label>
+          <input type="email" id="email">
+          <input type="submit" value="Submit">
+        </form>
       </div>
   </body>
 </html>
