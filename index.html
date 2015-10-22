@@ -15,10 +15,11 @@
         <form class="form-horizontal">
           <input type="text" ng-model="contactCtrl.searchTerm">
           <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
+          <button class="btn all-contacts-button" ng-click="contactCtrl.showAllContacts()">Show All Contacts</button>
         </form>
         <div class="allContacts">
           <ul class="list-group">
-            <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy:   'surname'">
+            <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
               <ul>
                 <li>{{ contact.first_name }}</li>
                 <li>{{ contact.surname }}</li>

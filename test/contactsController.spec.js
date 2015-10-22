@@ -2,6 +2,7 @@ describe ('ContactsController', function() {
   beforeEach(module('AddressBook'));
 
   var ctrl;
+  var httpBackend;
 
   beforeEach(inject(function($controller) {
     ctrl = $controller('ContactsController');
@@ -31,7 +32,6 @@ describe ('ContactsController', function() {
       },
     ];
 
-    var httpBackend;
     beforeEach(inject(function($httpBackend) {
       httpBackend = $httpBackend;
       httpBackend
@@ -42,6 +42,7 @@ describe ('ContactsController', function() {
     }));
 
     it('displays contacts list', function() {
+      ctrl.showAllContacts();
       httpBackend.flush();
       expect(ctrl.contactsList[0].contacts).toEqual(contacts);
     });

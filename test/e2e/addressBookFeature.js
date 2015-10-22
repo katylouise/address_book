@@ -2,13 +2,14 @@ describe('Address Book', function() {
   var contacts = element.all(by.repeater('contact in contactCtrl.contactsList'));
   var searchBox = element(by.model('contactCtrl.searchTerm'));
   var searchButton = element(by.className('search-button'));
+  var showAllButton = element(by.className('all-contacts-button'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');
     expect(browser.getTitle()).toEqual('Address Book');
   });
 
-  it('shows all contacts', function() {
+  it('displays all contacts on page load', function() {
     expect(contacts.get(0).element(by.binding('contact.first_name')).getText()).toEqual('Gareth');
   });
 
@@ -16,6 +17,13 @@ describe('Address Book', function() {
     searchBox.sendKeys('John');
     searchButton.click();
     expect(element(by.binding('contactCtrl.contact.first_name')).getText()).toEqual('John');
+  });
+
+  it('displays all contacts after a search', function() {
+    searchBox.sendKeys('John');
+    searchButton.click();
+    showAllButton.click();
+    expect(contacts.get(0).element(by.binding('contact.first_name')).getText()).toEqual('Gareth');
   });
 });
 
