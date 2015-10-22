@@ -5,6 +5,7 @@ describe('Address Book', function() {
   var showAllButton = element(by.className('all-contacts-button'));
   var addButton = element(by.className('add-contact-button'));
   var addContactForm = element(by.className('add-contact-form'));
+  var submitButton = element(by.id('submit'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');
@@ -31,6 +32,12 @@ describe('Address Book', function() {
   it('displays a form to add a new contact', function() {
     addButton.click();
     expect(addContactForm.isDisplayed()).toBeTruthy();
+  });
+
+  it('hides the form when the submit button is clicked', function() {
+    addButton.click();
+    submitButton.click()
+    expect(addContactForm.isDisplayed()).toBeFalsy();
   });
 });
 

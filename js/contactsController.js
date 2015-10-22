@@ -24,4 +24,8 @@ addressBookApp.controller('ContactsController', ['$resource', function($resource
   self.showAddContacts = function() {
     angular.element('.add-contact-form').show();
   }
+
+  self.addContact = function() {
+    angular.element('.add-contact-form').hide();
+  }
 }]);
