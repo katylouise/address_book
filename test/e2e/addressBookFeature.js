@@ -5,7 +5,7 @@ describe('Address Book', function() {
   var showAllButton = element(by.className('all-contacts-button'));
   var addButton = element(by.className('add-contact-button'));
   var addContactForm = element(by.className('add-contact-form'));
-  var submitButton = element(by.id('submit'));
+  var submitButton = element(by.className('.btn-success'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');

@@ -43,18 +43,36 @@
         </div>
       </div>
       <div class="add-contact-form">
-        <form>
-          <label for="firstname">First Name:</label>
-          <input type="text" id="firstname">
-          <label for="surname">Surname:</label>
-          <input type="text" id="surname">
-          <label for="address">Address:</label>
-          <textarea id="address"></textarea>
-          <label for="phonenumber">Phone Number:</label>
-          <input type="text" id="phonenumber">
-          <label for="email">Email:</label>
-          <input type="email" id="email">
-          <input type="submit" id="submit" value="Submit" ng-click="contactCtrl.addContact()">
+        <form ng-submit="ctrl.addContact()">
+          <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" ng-model="formData.first_name">
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" ng-model="formData.surname">
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" ng-model="formData.address"></textarea>
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" ng-model="formData.phone_number">
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" ng-model="formData.email">
+            <span class="help-block"></span>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-lg btn-block" value="Submit" ng-click="contactCtrl.addContact(formData)">
+            <span class="glyphicon glyphicon-flash"></span> Submit!
+          </button>
         </form>
       </div>
   </body>

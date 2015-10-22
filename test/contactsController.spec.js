@@ -8,38 +8,38 @@ describe ('ContactsController', function() {
     ctrl = $controller('ContactsController');
   }));
 
-  describe('displaying contacts', function() {
-    var contacts = [
-      {
-        first_name: "Gareth",
-        surname: "Billington",
-        address: "Universal Marina",
-        phone_number: "0121212",
-        email: "gareth.billington@alliants.com",
-        id: 6791,
-        createdAt: "2015-04-29T20:10:26.000Z",
-        updatedAt: "2015-09-29T08:55:21.000Z"
-      },
-      {
-        first_name: "K",
-        surname: "Z",
-        address: "asfasd",
-        phone_number: "123123",
-        email: "a@wp.pl",
-        id: 6891,
-        createdAt: "2015-06-02T11:09:19.000Z",
-        updatedAt: "2015-09-24T18:51:52.000Z"
-      },
-    ];
+  var contacts = [
+    {
+      first_name: "Gareth",
+      surname: "Billington",
+      address: "Universal Marina",
+      phone_number: "0121212",
+      email: "gareth.billington@alliants.com",
+      id: 6791,
+      createdAt: "2015-04-29T20:10:26.000Z",
+      updatedAt: "2015-09-29T08:55:21.000Z"
+    },
+    {
+      first_name: "K",
+      surname: "Z",
+      address: "asfasd",
+      phone_number: "123123",
+      email: "a@wp.pl",
+      id: 6891,
+      createdAt: "2015-06-02T11:09:19.000Z",
+      updatedAt: "2015-09-24T18:51:52.000Z"
+    },
+  ];
 
-    beforeEach(inject(function($httpBackend) {
-      httpBackend = $httpBackend;
-      httpBackend
-      .when("GET", "https://fast-gorge.herokuapp.com/contacts")
-      .respond(
-        [{ contacts: contacts }]
-      );
-    }));
+  beforeEach(inject(function($httpBackend) {
+    httpBackend = $httpBackend;
+    httpBackend.expectGET("https://fast-gorge.herokuapp.com/contacts")
+    .respond(
+      [{ contacts: contacts }]
+    );
+  }));
+
+  describe('displaying contacts', function() {
 
     it('displays contacts list', function() {
       httpBackend.flush();
@@ -54,10 +54,29 @@ describe ('ContactsController', function() {
     });
   });
 
-  // describe('adding contacts', function() {
-  //   it('can display a form to add a contact', function() {
-  //     ctrl.addContact();
-  //   });
-  // });
+  describe('adding contacts', function() {
+
+    var newContact = {
+      first_name: "Rebecca",
+      surname: "Appleyard",
+      address: "London",
+      phone_number: "12345678",
+      email: "r@r.com",
+      id: 7131,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+
+    beforeEach(inject(function($httpBackend) {
+      httpBackend.expectPOST("https://fast-gorge.herokuapp.com/contacts", newContact)
+      .respond(200, { response: newContact });
+    }));
+
+    it('can add a contact to the address book', function() {
+      ctrl.addContact(newContact);
+      httpBackend.flush();
+      expect(ctrl.result).toEqual("Success!");
+    });
+  });
 
 });
