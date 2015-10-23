@@ -2,8 +2,20 @@ body {
   z-index: 1;
 }
 
-.add-contact-form, .update-contact-form, .single-contact {
+.add-contact-form, .update-contact-form{
   display: none;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  background: #ffffff;
+  padding: 30px;
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 500px;
+  z-index: 2;
+}
+
+.single-contact {
   position: fixed;
   top: 20%;
   left: 35%;

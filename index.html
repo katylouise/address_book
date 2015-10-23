@@ -34,7 +34,7 @@
         </ul>
       </div>
 
-      <div class="single-contact">
+      <div class="single-contact" ng-show="contactCtrl.showSingleContact">
         <ul class="list-unstyled">
           <li>{{ contactCtrl.contact.first_name }}</li>
           <li>{{ contactCtrl.contact.surname }}</li>
@@ -80,7 +80,7 @@
       </form>
     </div>
 
-    <div class="update-contact-form">
+    <div class="update-contact-form" ng-show="contactCtrl.showUpdateForm">
       <form>
         <div class="form-group">
           <label for="first_name">First Name:</label>

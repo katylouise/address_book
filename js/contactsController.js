@@ -13,7 +13,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
         position = i;
         self.contactID = self.contactsList[i].id;
         self.contact = Contact.get({ id: self.contactID });
-        angular.element('.single-contact').show();
+        self.showSingleContact = true;
       }
     }
   }
@@ -38,15 +38,17 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
       self.result = "Updated!";
       self.contactsList[position] = updatedContact;
-      angular.element('.update-contact-form').hide();
-      angular.element('.single-contact').hide();
+      //angular.element('.update-contact-form').hide();
+      self.showUpdateForm = false;
+      self.showSingleContact = false;
+      //angular.element('.single-contact').hide();
     }, function() {
       self.result = "Error!"
     });
   }
 
   self.showUpdateContact = function() {
-    angular.element('.update-contact-form').show();
+    self.showUpdateForm = true;
   }
 
   self.deleteContact = function() {
