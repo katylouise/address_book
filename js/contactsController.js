@@ -38,7 +38,6 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
       self.result = "Updated!";
       self.contactsList[position] = updatedContact;
-      //angular.element('.update-contact-form').hide();
       self.showUpdateForm = false;
     }, function() {
       self.result = "Error!"
@@ -54,8 +53,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     Contact.remove({ id: self.contactID }).$promise.then(function() {
       self.result = "Contact deleted!";
       self.contactsList.splice(position, 1);
-      angular.element('.single-contact').hide();
-
+      self.showSingleContact = false;
     }, function() {
       self.result = "Error!";
     });
