@@ -6,6 +6,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '
   self.contact;
   self.contactID;
   self.contactsList = contactsResource.query();
+  var position;
 
   self.showAllContacts = function() {
     angular.element('.all-contacts').show();
@@ -15,6 +16,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '
   self.searchForContact = function() {
     for (var i = 0; i < self.contactsList.length; i++) {
       if (self.contactsList[i].first_name === self.searchTerm || self.contactsList[i].surname === self.searchTerm) {
+        position = i;
         self.contactID = self.contactsList[i].id;
         self.contact = Contact.get({ id: self.contactID });
         angular.element('.all-contacts').hide();
@@ -30,8 +32,8 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '
   self.addContact = function(contact) {
     var newContact = contact;
     contactsResource.save(newContact).$promise.then(function() {
-      self.contactsList.push(newContact);
       self.result = "Success!";
+      self.contactsList.push(newContact);
     }, function() {
       self.result = "Error!";
     });
@@ -42,6 +44,8 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '
     var updatedContact = updateData;
     UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
       self.result = "Updated!";
+      self.contactsList[position] = updatedContact;
+      angular.element('.all-contacts').show();
     }, function() {
       self.result = "Error!"
     });
