@@ -1,8 +1,10 @@
 addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', function($resource, UpdateContact) {
   var self = this;
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
-  var searchResource = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
+  var Contact = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
 
+  self.contact;
+  self.contactID;
   self.formData = {};
   self.contactData = {};
   self.contactsList = contactsResource.query();
@@ -15,7 +17,8 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   self.searchForContact = function() {
     for (var i = 0; i < self.contactsList.length; i++) {
       if (self.contactsList[i].first_name === self.searchTerm || self.contactsList[i].surname === self.searchTerm) {
-        self.contact = searchResource.get({ id: self.contactsList[i].id });
+        self.contactID = self.contactsList[i].id;
+        self.contact = Contact.get({ id: self.contactID });
         angular.element('.all-contacts').hide();
         angular.element('.single-contact').show();
       }
@@ -27,8 +30,8 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   }
 
   self.addContact = function(formData) {
-    var user = formData;
-    contactsResource.save(user).$promise.then(function() {
+    var newContact = formData;
+    contactsResource.save(newContact).$promise.then(function() {
       self.result = "Success!";
     }, function() {
       self.result = "Error!";
@@ -37,18 +40,23 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   }
 
   self.updateContact = function(updateData) {
-
+    Contact.update({ id: self.contactID}, updateData).$promise.then(function(data) {
+      self.result = "Updated!";
+      console.log(data);
+    }, function() {
+      self.result = "Error!"
+    });
   }
 
-  self.deleteContact = function(contactData) {
-    for (var i = 0; i < self.contactsList.length; i++) {
-      if (self.contactsList[i].first_name === contactData.first_name && self.contactsList[i].surname === contactData.surname) {
-        searchResource.remove({ id: self.contactsList[i].id }).$promise.then(function() {
-          self.result = "Deleted contact!";
-        }, function() {
-          self.result = "Error!"
-        });
-      }
-    }
+  self.showUpdateContact = function() {
+    angular.element('.update-contact-form').show();
+  }
+
+  self.deleteContact = function() {
+    Contact.remove({ id: self.contactID }).$promise.then(function() {
+      self.result = "Deleted contact!";
+    }, function() {
+      self.result = "Error!";
+    });
   }
 }]);

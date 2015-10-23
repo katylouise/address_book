@@ -82,13 +82,16 @@ describe ('ContactsController', function() {
 
     beforeEach(inject(function($httpBackend) {
       httpBackend.whenDELETE("https://fast-gorge.herokuapp.com/contacts/6791")
-      .respond(200, { message: "Deleted contact!" });
+      .respond(200, { response: contacts[0] });
     }));
 
     it('can delete a contact from the address book', function() {
-      ctrl.deleteContact(formData);
       httpBackend.flush();
+      ctrl.searchTerm = "Gareth";
+      ctrl.searchForContact();
+      ctrl.deleteContact();
       expect(ctrl.result).toEqual("Deleted contact!");
+
     });
   });
 });

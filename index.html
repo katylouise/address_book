@@ -23,7 +23,7 @@
       <div class="messages">{{ contactCtrl.result }}</div>
       <div class="all-contacts">
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy'surname'">
+          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
             <ul>
               <li>{{ contact.first_name }}</li>
               <li>{{ contact.surname }}</li>
@@ -44,14 +44,14 @@
           <li>{{ contactCtrl.contact.email }}</li>
         </ul>
         <ul class="horizontal-list buttons">
-          <li><button type="submit" class="btn btn-success btn-lg btn-block update-btn"ng-click contactCtrl.deleteContact(contactData)">Update</button></li>
-          <li><button type="submit" class="btn btn-success btn-lg btn-block delete-btn"ng-clickcontactCtrl.deleteContact(contactData)">Delete</button></li>
+          <li><button type="submit" class="btn btn-success btn-lg btn-block update-btn" ng-click=" contactCtrl.showUpdateContact()">Edit</button></li>
+          <li><button type="submit" class="btn btn-success btn-lg btn-block delete-btn" ng-click="contactCtrl.deleteContact()">Delete</button></li>
         </ul>
       </div>
     </div>
 
     <div class="add-contact-form">
-      <form ng-submit="ctrl.addContact()">
+      <form>
         <div class="form-group">
           <label for="first_name">First Name:</label>
           <input type="text" id="first_name" ng-model="formData.first_name">
@@ -78,6 +78,36 @@
           <span class="help-block"></span>
         </div>
         <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" nclick="contactCtrl.addContact(formData)">
+      </form>
+    </div>
+    <div class="update-contact-form">
+      <form>
+        <div class="form-group">
+          <label for="first_name">First Name:</label>
+          <input type="text" id="first_name" ng-model="contactCtrl.contact.first_name">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" ng-model="contactCtrl.contact.surname">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea id="address" ng-model="contactCtrl.contact.address"></textarea>
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone_number">Phone Number:</label>
+          <input type="text" id="phone_number" ng-model="contactCtrl.contact.phone_number">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" ng-model="contactCtrl.contact.email">
+          <span class="help-block"></span>
+        </div>
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" nclick="contactCtrl.updateContact(contact)">
       </form>
     </div>
   </body>
