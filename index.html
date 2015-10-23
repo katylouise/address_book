@@ -54,30 +54,30 @@
       <form>
         <div class="form-group">
           <label for="first_name">First Name:</label>
-          <input type="text" id="first_name" ng-model="formData.first_name">
+          <input type="text" id="first_name" ng-model="contact.first_name">
           <span class="help-block"></span>
         </div>
         <div class="form-group">
           <label for="surname">Surname:</label>
-          <input type="text" id="surname" ng-model="formData.surname">
+          <input type="text" id="surname" ng-model="contact.surname">
           <span class="help-block"></span>
         </div>
         <div class="form-group">
           <label for="address">Address:</label>
-          <textarea id="address" ng-model="formData.address"></textarea>
+          <textarea id="address" ng-model="contact.address"></textarea>
           <span class="help-block"></span>
         </div>
         <div class="form-group">
           <label for="phone_number">Phone Number:</label>
-          <input type="text" id="phone_number" ng-model="formData.phone_number">
+          <input type="text" id="phone_number" ng-model="contact.phone_number">
           <span class="help-block"></span>
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" ng-model="formData.email">
+          <input type="email" id="email" ng-model="contact.email">
           <span class="help-block"></span>
         </div>
-        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(formData)">
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(contact); ">
       </form>
     </div>
     <div class="update-contact-form">

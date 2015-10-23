@@ -1,12 +1,10 @@
-addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', function($resource, UpdateContact) {
+addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '$scope', function($resource, UpdateContact, $scope) {
   var self = this;
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
   var Contact = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
 
   self.contact;
   self.contactID;
-  self.formData = {};
-  self.contactData = {};
   self.contactsList = contactsResource.query();
 
   self.showAllContacts = function() {
@@ -29,9 +27,10 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     angular.element('.add-contact-form').show();
   }
 
-  self.addContact = function(formData) {
-    var newContact = formData;
+  self.addContact = function(contact) {
+    var newContact = contact;
     contactsResource.save(newContact).$promise.then(function() {
+      self.contactsList.push(newContact);
       self.result = "Success!";
     }, function() {
       self.result = "Error!";
