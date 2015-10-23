@@ -77,7 +77,7 @@
           <input type="email" id="email" ng-model="formData.email">
           <span class="help-block"></span>
         </div>
-        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" nclick="contactCtrl.addContact(formData)">
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(formData)">
       </form>
     </div>
     <div class="update-contact-form">
@@ -107,7 +107,7 @@
           <input type="email" id="email" ng-model="contactCtrl.contact.email">
           <span class="help-block"></span>
         </div>
-        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" nclick="contactCtrl.updateContact(contact)">
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.updateContact(contactCtrl.contact)">
       </form>
     </div>
   </body>

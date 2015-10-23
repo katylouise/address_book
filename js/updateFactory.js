@@ -1,6 +1,6 @@
 addressBookApp.factory('UpdateContact', ['$resource', function($resource) {
-  return $resource('/contacts/:id', null,
+  return $resource('https://fast-gorge.herokuapp.com/contacts/:id', null,
     {
-      'update': { method:'PUT' }
+      'update': { method: 'PUT' }
     });
 }]);

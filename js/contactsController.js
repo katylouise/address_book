@@ -36,13 +36,13 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     }, function() {
       self.result = "Error!";
     });
-    //angular.element('.add-contact-form').hide();
+    angular.element('.add-contact-form').hide();
   }
 
   self.updateContact = function(updateData) {
-    Contact.update({ id: self.contactID}, updateData).$promise.then(function(data) {
+    var updatedContact = updateData;
+    UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
       self.result = "Updated!";
-      console.log(data);
     }, function() {
       self.result = "Error!"
     });
