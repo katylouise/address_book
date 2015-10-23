@@ -3,4 +3,5 @@
   border: 2px solid black;
   border-radius: 8px;
   width: 500px;
+  z-index: 2;
 }

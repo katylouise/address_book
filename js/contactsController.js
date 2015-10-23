@@ -1,9 +1,10 @@
-addressBookApp.controller('ContactsController', ['$resource', function($resource) {
+addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', function($resource, UpdateContact) {
   var self = this;
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
   var searchResource = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
 
   self.formData = {};
+  self.contactData = {};
   self.contactsList = contactsResource.query();
 
   self.showAllContacts = function() {
@@ -27,14 +28,27 @@ addressBookApp.controller('ContactsController', ['$resource', function($resource
 
   self.addContact = function(formData) {
     var user = formData;
-    var timestamp = new Date();
-    user.createdAt = timestamp;
-    user.updatedAt = timestamp;
-    contactsResource.save(user).$promise.then(function(data) {
+    contactsResource.save(user).$promise.then(function() {
       self.result = "Success!";
     }, function() {
       self.result = "Error!";
     });
     //angular.element('.add-contact-form').hide();
+  }
+
+  self.updateContact = function(updateData) {
+
+  }
+
+  self.deleteContact = function(contactData) {
+    for (var i = 0; i < self.contactsList.length; i++) {
+      if (self.contactsList[i].first_name === contactData.first_name && self.contactsList[i].surname === contactData.surname) {
+        searchResource.remove({ id: self.contactsList[i].id }).$promise.then(function() {
+          self.result = "Deleted contact!";
+        }, function() {
+          self.result = "Error!"
+        });
+      }
+    }
   }
 }]);

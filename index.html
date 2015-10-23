@@ -10,70 +10,75 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
     <script src="js/contactsController.js"></script>
+    <script src="js/updateFactory.js"></script>
   </head>
   <body ng-controller="ContactsController as contactCtrl">
     <div>
-        <form class="form-horizontal">
-          <input type="text" ng-model="contactCtrl.searchTerm">
-          <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
-          <button class="btn all-contacts-button" ng-click="contactCtrl.showAllContacts()">Show All Contacts</button>
-          <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
-        </form>
-        <div class="all-contacts">
-          <ul class="list-group">
-            <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
-              <ul>
-                <li>{{ contact.first_name }}</li>
-                <li>{{ contact.surname }}</li>
-                <li>{{ contact.address }}</li>
-                <li>{{ contact.phone_number }}</li>
-                <li>{{ contact.email }}</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="single-contact">
-          <ul>
-            <li>{{ contactCtrl.contact.first_name }}</li>
-            <li>{{ contactCtrl.contact.surname }}</li>
-            <li>{{ contactCtrl.contact.address }}</li>
-            <li>{{ contactCtrl.contact.phone_number }}</li>
-            <li>{{ contactCtrl.contact.email }}</li>
-          </ul>
-        </div>
+      <form class="form-horizontal">
+        <input type="text" ng-model="contactCtrl.searchTerm">
+        <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
+        <button class="btn all-contacts-button" ng-click="contactCtrl.showAllContacts()">Show All Contacts</button>
+        <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
+      </form>
+      <div class="messages">{{ contactCtrl.result }}</div>
+      <div class="all-contacts">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy'surname'">
+            <ul>
+              <li>{{ contact.first_name }}</li>
+              <li>{{ contact.surname }}</li>
+              <li>{{ contact.address }}</li>
+              <li>{{ contact.phone_number }}</li>
+              <li>{{ contact.email }}</li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <div class="add-contact-form">
-        <form ng-submit="ctrl.addContact()">
-          <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" ng-model="formData.first_name">
-            <span class="help-block"></span>
-          </div>
-          <div class="form-group">
-            <label for="surname">Surname:</label>
-            <input type="text" id="surname" ng-model="formData.surname">
-            <span class="help-block"></span>
-          </div>
-          <div class="form-group">
-            <label for="address">Address:</label>
-            <textarea id="address" ng-model="formData.address"></textarea>
-            <span class="help-block"></span>
-          </div>
-          <div class="form-group">
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" id="phone_number" ng-model="formData.phone_number">
-            <span class="help-block"></span>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" ng-model="formData.email">
-            <span class="help-block"></span>
-          </div>
 
-          <button type="submit" class="btn btn-success btn-lg btn-block" value="Submit" ng-click="contactCtrl.addContact(formData)">
-            <span class="glyphicon glyphicon-flash"></span> Submit!
-          </button>
-        </form>
+      <div class="single-contact">
+        <ul>
+          <li>{{ contactCtrl.contact.first_name }}</li>
+          <li>{{ contactCtrl.contact.surname }}</li>
+          <li>{{ contactCtrl.contact.address }}</li>
+          <li>{{ contactCtrl.contact.phone_number }}</li>
+          <li>{{ contactCtrl.contact.email }}</li>
+        </ul>
+        <ul class="horizontal-list buttons">
+          <li><button type="submit" class="btn btn-success btn-lg btn-block update-btn"ng-click contactCtrl.deleteContact(contactData)">Update</button></li>
+          <li><button type="submit" class="btn btn-success btn-lg btn-block delete-btn"ng-clickcontactCtrl.deleteContact(contactData)">Delete</button></li>
+        </ul>
       </div>
+    </div>
+
+    <div class="add-contact-form">
+      <form ng-submit="ctrl.addContact()">
+        <div class="form-group">
+          <label for="first_name">First Name:</label>
+          <input type="text" id="first_name" ng-model="formData.first_name">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" ng-model="formData.surname">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea id="address" ng-model="formData.address"></textarea>
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone_number">Phone Number:</label>
+          <input type="text" id="phone_number" ng-model="formData.phone_number">
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" ng-model="formData.email">
+          <span class="help-block"></span>
+        </div>
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" nclick="contactCtrl.addContact(formData)">
+      </form>
+    </div>
   </body>
 </html>

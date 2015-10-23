@@ -33,14 +33,13 @@ describe ('ContactsController', function() {
 
   beforeEach(inject(function($httpBackend) {
     httpBackend = $httpBackend;
-    httpBackend.expectGET("https://fast-gorge.herokuapp.com/contacts")
+    httpBackend.whenGET("https://fast-gorge.herokuapp.com/contacts")
     .respond(
       [{ contacts: contacts }]
     );
   }));
 
   describe('displaying contacts', function() {
-
     it('displays contacts list', function() {
       httpBackend.flush();
       expect(ctrl.contactsList[0].contacts).toEqual(contacts);
@@ -55,20 +54,16 @@ describe ('ContactsController', function() {
   });
 
   describe('adding contacts', function() {
-
     var newContact = {
       first_name: "Rebecca",
       surname: "Appleyard",
       address: "London",
       phone_number: "12345678",
-      email: "r@r.com",
-      id: 7131,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      email: "r@r.com"
     }
 
     beforeEach(inject(function($httpBackend) {
-      httpBackend.expectPOST("https://fast-gorge.herokuapp.com/contacts", newContact)
+      httpBackend.whenPOST("https://fast-gorge.herokuapp.com/contacts", newContact)
       .respond(200, { response: newContact });
     }));
 
@@ -79,4 +74,21 @@ describe ('ContactsController', function() {
     });
   });
 
+  describe('deleting contacts', function() {
+    var formData = {
+      first_name: "Gareth",
+      surname: "Billington"
+    }
+
+    beforeEach(inject(function($httpBackend) {
+      httpBackend.whenDELETE("https://fast-gorge.herokuapp.com/contacts/6791")
+      .respond(200, { message: "Deleted contact!" });
+    }));
+
+    it('can delete a contact from the address book', function() {
+      ctrl.deleteContact(formData);
+      httpBackend.flush();
+      expect(ctrl.result).toEqual("Deleted contact!");
+    });
+  });
 });

@@ -5,25 +5,28 @@ describe('Address Book', function() {
   var showAllButton = element(by.className('all-contacts-button'));
   var addButton = element(by.className('add-contact-button'));
   var addContactForm = element(by.className('add-contact-form'));
-  var submitButton = element(by.className('.btn-success'));
+  var submitButton = element(by.className('.add-btn'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');
     expect(browser.getTitle()).toEqual('Address Book');
   });
 
-  it('displays all contacts on page load', function() {
+  it('displays all contacts alphabetically on page load', function() {
     expect(contacts.get(0).element(by.binding('contact.first_name')).getText()).toEqual('Gareth');
+    expect(contacts.get(1).element(by.binding('contact.first_name')).getText()).toEqual('John');
   });
 
   it('can display a single contact', function() {
     searchBox.sendKeys('John');
+    searchBox.clear();
     searchButton.click();
     expect(element(by.binding('contactCtrl.contact.first_name')).getText()).toEqual('John');
   });
 
   it('displays all contacts after a search', function() {
     searchBox.sendKeys('John');
+    searchBox.clear();
     searchButton.click();
     showAllButton.click();
     expect(contacts.get(0).element(by.binding('contact.first_name')).getText()).toEqual('Gareth');
@@ -34,10 +37,11 @@ describe('Address Book', function() {
     expect(addContactForm.isDisplayed()).toBeTruthy();
   });
 
-  it('hides the form when the submit button is clicked', function() {
+  xit('hides the form when the submit button is clicked', function() {
     addButton.click();
     submitButton.click()
     expect(addContactForm.isDisplayed()).toBeFalsy();
   });
+
 });
 
