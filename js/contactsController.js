@@ -58,6 +58,9 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', '
   self.deleteContact = function() {
     Contact.remove({ id: self.contactID }).$promise.then(function() {
       self.result = "Deleted contact!";
+      self.contactsList.splice(position, 1);
+      angular.element('.all-contacts').show();
+
     }, function() {
       self.result = "Error!";
     });
