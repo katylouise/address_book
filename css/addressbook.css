@@ -2,7 +2,7 @@ body {
   z-index: 1;
 }
 
-.add-contact-form, .update-contact-form{
+.add-contact-form {
   display: none;
   position: fixed;
   top: 20%;
@@ -15,7 +15,7 @@ body {
   z-index: 2;
 }
 
-.single-contact {
+.single-contact, .update-contact-form {
   position: fixed;
   top: 20%;
   left: 35%;

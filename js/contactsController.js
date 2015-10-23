@@ -40,14 +40,13 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
       self.contactsList[position] = updatedContact;
       //angular.element('.update-contact-form').hide();
       self.showUpdateForm = false;
-      self.showSingleContact = false;
-      //angular.element('.single-contact').hide();
     }, function() {
       self.result = "Error!"
     });
   }
 
   self.showUpdateContact = function() {
+    self.showSingleContact = false;
     self.showUpdateForm = true;
   }
 
