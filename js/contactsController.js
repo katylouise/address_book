@@ -19,7 +19,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   }
 
   self.showAddContacts = function() {
-    angular.element('.add-contact-form').show();
+    self.showAddForm = true;
   }
 
   self.addContact = function(contact) {
@@ -27,10 +27,10 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     contactsResource.save(newContact).$promise.then(function() {
       self.result = "Success!";
       self.contactsList.push(newContact);
+      self.showAddForm = false;
     }, function() {
       self.result = "Error!";
     });
-    angular.element('.add-contact-form').hide();
   }
 
   self.updateContact = function(updateData) {
