@@ -17,14 +17,13 @@
       <form class="form-horizontal">
         <input type="text" ng-model="contactCtrl.searchTerm">
         <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
-        <button class="btn all-contacts-button" ng-click="contactCtrl.showAllContacts()">Show All Contacts</button>
         <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
       </form>
       <div class="messages">{{ contactCtrl.result }}</div>
       <div class="all-contacts">
-        <ul class="list-group">
+        <ul class="list-group list-unstyled">
           <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
-            <ul>
+            <ul class="list-unstyled">
               <li>{{ contact.first_name }}</li>
               <li>{{ contact.surname }}</li>
               <li>{{ contact.address }}</li>
@@ -36,14 +35,14 @@
       </div>
 
       <div class="single-contact">
-        <ul>
+        <ul class="list-unstyled">
           <li>{{ contactCtrl.contact.first_name }}</li>
           <li>{{ contactCtrl.contact.surname }}</li>
           <li>{{ contactCtrl.contact.address }}</li>
           <li>{{ contactCtrl.contact.phone_number }}</li>
           <li>{{ contactCtrl.contact.email }}</li>
         </ul>
-        <ul class="horizontal-list buttons">
+        <ul class="horizontal-list list-unstyled buttons">
           <li><button type="submit" class="btn btn-success btn-lg btn-block update-btn" ng-click=" contactCtrl.showUpdateContact()">Edit</button></li>
           <li><button type="submit" class="btn btn-success btn-lg btn-block delete-btn" ng-click="contactCtrl.deleteContact()">Delete</button></li>
         </ul>
@@ -80,6 +79,7 @@
         <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(contact); ">
       </form>
     </div>
+
     <div class="update-contact-form">
       <form>
         <div class="form-group">
