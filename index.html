@@ -50,62 +50,56 @@
     </div>
 
     <div class="add-contact-form" ng-show="contactCtrl.showAddForm">
-      <form>
+      <form name="addContact" novalidate>
         <div class="form-group">
-          <label for="first_name">First Name:</label>
-          <input type="text" id="first_name" ng-model="contact.first_name">
-          <span class="help-block"></span>
+          <label>First Name</label>
+          <input name="first_name" type="text" ng-model="contact.first_name" required>
+          <span class="error" ng-show="addContact.first_name.$invalid && contactCtrl.submitted">First name is required.</span>
         </div>
         <div class="form-group">
-          <label for="surname">Surname:</label>
-          <input type="text" id="surname" ng-model="contact.surname">
-          <span class="help-block"></span>
+          <label>Surname</label>
+          <input name="surname" type="text" ng-model="contact.surname" required>
+          <span class="error" ng-show="addContact.surname.$invalid && contactCtrl.submitted">Surname is required.</span>
         </div>
         <div class="form-group">
-          <label for="address">Address:</label>
-          <textarea id="address" ng-model="contact.address"></textarea>
-          <span class="help-block"></span>
+          <label>Address</label>
+          <textarea ng-model="contact.address"></textarea>
         </div>
         <div class="form-group">
-          <label for="phone_number">Phone Number:</label>
-          <input type="text" id="phone_number" ng-model="contact.phone_number">
-          <span class="help-block"></span>
+          <label>Phone Number</label>
+          <input type="number" ng-model="contact.phone_number">
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" ng-model="contact.email">
-          <span class="help-block"></span>
+          <label>Email</label>
+          <input type="email" ng-model="contact.email">
         </div>
-        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(contact); ">
+        <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(contact)">
       </form>
     </div>
 
     <div class="update-contact-form" ng-show="contactCtrl.showUpdateForm">
       <form>
         <div class="form-group">
-          <label for="first_name">First Name:</label>
-          <input type="text" id="first_name" ng-model="contactCtrl.contact.first_name">
-          <span class="help-block"></span>
+          <label>First Name</label>
+          <input type="text" ng-model="contactCtrl.contact.first_name">
+          <span class="error" ng-show="addContact.first_name.$invalid && contactCtrl.submitted">First name is required.</span>
         </div>
         <div class="form-group">
-          <label for="surname">Surname:</label>
-          <input type="text" id="surname" ng-model="contactCtrl.contact.surname">
-          <span class="help-block"></span>
+          <label>Surname</label>
+          <input type="text" ng-model="contactCtrl.contact.surname">
+          <span class="error" ng-show="addContact.surname.$invalid && contactCtrl.submitted">Surname is required.</span>
         </div>
         <div class="form-group">
-          <label for="address">Address:</label>
-          <textarea id="address" ng-model="contactCtrl.contact.address"></textarea>
-          <span class="help-block"></span>
+          <label>Address</label>
+          <textarea ng-model="contactCtrl.contact.address"></textarea>
         </div>
         <div class="form-group">
-          <label for="phone_number">Phone Number:</label>
-          <input type="text" id="phone_number" ng-model="contactCtrl.contact.phone_number">
-          <span class="help-block"></span>
+          <label>Phone Number</label>
+          <input type="number" ng-model="contactCtrl.contact.phone_number">
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" ng-model="contactCtrl.contact.email">
-          <span class="help-block"></span>
+          <label>Email</label>
+          <input type="email" ng-model="contactCtrl.contact.email">
         </div>
         <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.updateContact(contactCtrl.contact)">
       </form>

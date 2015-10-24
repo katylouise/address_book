@@ -3,6 +3,7 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
   var Contact = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
   var position;
+  self.submitted = false;
   self.contact;
   self.contactID;
   self.contactsList = contactsResource.query();
@@ -23,14 +24,20 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   }
 
   self.addContact = function(contact) {
-    var newContact = contact;
-    contactsResource.save(newContact).$promise.then(function() {
-      self.result = "Success!";
-      self.contactsList.push(newContact);
-      self.showAddForm = false;
-    }, function() {
-      self.result = "Error!";
-    });
+    if (self.addContact.$valid) {
+      var newContact = contact;
+      contactsResource.save(newContact).$promise.then(function() {
+        self.result = "Success!";
+        self.contactsList.push(newContact);
+        self.showAddForm = false;
+        self.submitted = false;
+      }, function() {
+        self.result = "Error!";
+      });
+    }
+    else {
+      self.submitted = true;
+    }
   }
 
   self.updateContact = function(updateData) {
