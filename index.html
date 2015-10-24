@@ -19,7 +19,7 @@
         <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
         <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
       </form>
-      <div class="messages">{{ contactCtrl.result }}</div>
+      <div ng-show="contactCtrl.showMessage" class="messages">{{ contactCtrl.result }}</div>
       <div class="all-contacts">
         <ul class="list-group list-unstyled">
           <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">

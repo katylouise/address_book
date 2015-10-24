@@ -1,4 +1,4 @@
-addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', function($resource, UpdateContact) {
+addressBookApp.controller('ContactsController', ['$resource', '$timeout', 'UpdateContact', function($resource, $timeout, UpdateContact) {
   var self = this;
   var contactsResource = $resource('https://fast-gorge.herokuapp.com/contacts');
   var Contact = $resource('https://fast-gorge.herokuapp.com/contacts/:id', { id: '@id' });
@@ -17,6 +17,17 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
         self.showSingleContact = true;
       }
     }
+    if (!self.contact) {
+      showFlashMessage("No contact found!");
+    }
+  }
+
+  var showFlashMessage = function(message) {
+    self.showMessage = true;
+    self.result = message;
+    $timeout(function(){
+      self.showMessage = false;
+    }, 3000);
   }
 
   self.showAddContacts = function() {
@@ -27,12 +38,12 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     if (self.addContact.$valid) {
       var newContact = contact;
       contactsResource.save(newContact).$promise.then(function() {
-        self.result = "Success!";
+        showFlashMessage("Contact added successfully!");
         self.contactsList.push(newContact);
         self.showAddForm = false;
         self.submitted = false;
       }, function() {
-        self.result = "Error!";
+        showFlashMessage("There was an error. Please try again.");
       });
     }
     else {
@@ -44,12 +55,12 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
     if (self.updateContact.$valid) {
       var updatedContact = updateData;
       UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
-        self.result = "Updated!";
+        showFlashMessage("Contact updated successfully!");
         self.contactsList[position] = updatedContact;
         self.showUpdateForm = false;
         self.submitted = false;
       }, function() {
-        self.result = "Error!"
+        showFlashMessage("There was an error. Please try again.");
       });
     }
     else {
@@ -64,11 +75,11 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
 
   self.deleteContact = function() {
     Contact.remove({ id: contactID }).$promise.then(function() {
-      self.result = "Contact deleted!";
+      showFlashMessage("Contact deleted!");
       self.contactsList.splice(position, 1);
       self.showSingleContact = false;
     }, function() {
-      self.result = "Error!";
+      showFlashMessage("There was an error. Please try again.")
     });
   }
 }]);
