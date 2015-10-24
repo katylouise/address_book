@@ -1,0 +1,12 @@
+<button class="glyphicon glyphicon-remove" ng-click="contactCtrl.showSingleContact = !contactCtrl.showSingleContact"></button>
+<ul class="list-unstyled">
+  <li>{{ contactCtrl.contact.first_name }}</li>
+  <li>{{ contactCtrl.contact.surname }}</li>
+  <li>{{ contactCtrl.contact.address }}</li>
+  <li>{{ contactCtrl.contact.phone_number }}</li>
+  <li>{{ contactCtrl.contact.email }}</li>
+</ul>
+<ul class="horizontal-list list-unstyled buttons">
+  <li><button type="submit" class="btn btn-success btn-lg btn-block update-btn" ng-click=" contactCtrl.showUpdateContact()">Edit</button></li>
+  <li><button type="submit" class="btn btn-success btn-lg btn-block delete-btn" ng-click="contactCtrl.deleteContact()">Delete</button></li>
+</ul>
