@@ -6,8 +6,10 @@ describe('Address Book', function() {
   var addContactForm = element(by.className('add-contact-form'));
   var submitButton = element(by.buttonText('Submit'));
   var messagesBox = element(by.className('.messages'));
-  var errorBox = element(by.className('.error'));
+  var errorBox = element(by.tagName('span'));
   var firstNameInput = element(by.model('contact.first_name'));
+  var surnameInput = element(by.model('contact.surname'));
+  var cancelButton = element(by.className('.glyphicon-remove'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');
@@ -16,7 +18,7 @@ describe('Address Book', function() {
 
   it('displays all contacts alphabetically on page load', function() {
     expect(contacts.get(0).element(by.binding('contact.first_name')).getText()).toEqual('Gareth');
-    expect(contacts.get(1).element(by.binding('contact.first_name')).getText()).toEqual('rebecca');
+    expect(contacts.get(1).element(by.binding('contact.first_name')).getText()).toEqual('Dan');
   });
 
   it('can display a single contact', function() {
@@ -31,17 +33,20 @@ describe('Address Book', function() {
     expect(addContactForm.isDisplayed()).toBeTruthy();
   });
 
-  it('requires a firstname and surname for the add contact form to be valid', function() {
-    //addButton.click();
+  it('requires a surname for the add contact form to be valid', function() {
+    addButton.click();
     firstNameInput.sendKeys('bex');
     submitButton.click();
-    expect(errorBox.getText()).toEqual('Surname is required.');
+    expect(element.all(by.tagName('span')).get(1).getText()).toEqual('Surname is required.');
+    expect(addContactForm.isDisplayed()).toBeTruthy();
   });
 
-  xit('hides the form when the submit button is clicked', function() {
-    addButton.click();
-    submitButton.click()
-    expect(addContactForm.isDisplayed()).toBeFalsy();
+  it('requires a firstname for the add contact form to be valid', function() {
+    surnameInput.sendKeys('appleyard');
+    firstNameInput.clear();
+    submitButton.click();
+    expect(element.all(by.tagName('span')).get(0).getText()).toEqual('First name is required.');
+    expect(addContactForm.isDisplayed()).toBeTruthy();
   });
 
 });

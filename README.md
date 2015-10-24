@@ -1,8 +1,9 @@
 # Address Book
 
-Simple address book built using Angular.  A user can add, edit and delete contacts.
+Simple address book application built using Angular.  A user can add, edit and delete contacts.
 
 # Getting Started
+
 ```
 npm install
 bower install

@@ -15,7 +15,6 @@ header {
   position: relative;
 }
 
-
 header .btn {
   background: #EDE6E3;
 }
@@ -55,6 +54,10 @@ header h1 {
 
 input[type="text"], input[type="email"], input[type="number"], textarea {
   border-radius: 4px;
+}
+
+.error {
+  color: #ff0000;
 }
 
 .glyphicon-remove {
