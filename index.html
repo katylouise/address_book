@@ -35,6 +35,7 @@
       </div>
 
       <div class="single-contact" ng-show="contactCtrl.showSingleContact">
+        <button class="glyphicon glyphicon-remove" ng-click="contactCtrl.showSingleContact = !contactCtrl.showSingleContact"></button>
         <ul class="list-unstyled">
           <li>{{ contactCtrl.contact.first_name }}</li>
           <li>{{ contactCtrl.contact.surname }}</li>
@@ -50,6 +51,7 @@
     </div>
 
     <div class="add-contact-form" ng-show="contactCtrl.showAddForm">
+      <button class="glyphicon glyphicon-remove" ng-click="contactCtrl.showAddForm = !contactCtrl.showAddForm"></button>
       <form name="addContact" novalidate>
         <div class="form-group">
           <label>First Name</label>
@@ -78,16 +80,17 @@
     </div>
 
     <div class="update-contact-form" ng-show="contactCtrl.showUpdateForm">
-      <form>
+      <button class="glyphicon glyphicon-remove" ng-click="contactCtrl.showUpdateForm = !contactCtrl.showUpdateForm"></button>
+      <form name="updateContact">
         <div class="form-group">
           <label>First Name</label>
           <input type="text" ng-model="contactCtrl.contact.first_name">
-          <span class="error" ng-show="addContact.first_name.$invalid && contactCtrl.submitted">First name is required.</span>
+          <span class="error" ng-show="updateContact.first_name.$invalid && contactCtrl.submitted">First name is required.</span>
         </div>
         <div class="form-group">
           <label>Surname</label>
           <input type="text" ng-model="contactCtrl.contact.surname">
-          <span class="error" ng-show="addContact.surname.$invalid && contactCtrl.submitted">Surname is required.</span>
+          <span class="error" ng-show="updateContact.surname.$invalid && contactCtrl.submitted">Surname is required.</span>
         </div>
         <div class="form-group">
           <label>Address</label>

@@ -41,14 +41,20 @@ addressBookApp.controller('ContactsController', ['$resource', 'UpdateContact', f
   }
 
   self.updateContact = function(updateData) {
-    var updatedContact = updateData;
-    UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
-      self.result = "Updated!";
-      self.contactsList[position] = updatedContact;
-      self.showUpdateForm = false;
-    }, function() {
-      self.result = "Error!"
-    });
+    if (self.updateContact.$valid) {
+      var updatedContact = updateData;
+      UpdateContact.update({ id: self.contactID }, updatedContact).$promise.then(function() {
+        self.result = "Updated!";
+        self.contactsList[position] = updatedContact;
+        self.showUpdateForm = false;
+        self.submitted = false;
+      }, function() {
+        self.result = "Error!"
+      });
+    }
+    else {
+      self.submitted = true;
+    }
   }
 
   self.showUpdateContact = function() {

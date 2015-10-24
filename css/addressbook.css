@@ -14,10 +14,18 @@ body {
   z-index: 2;
 }
 
+.glyphicon-remove {
+  display: block;
+  float: right;
+  margin-right: 3px;
+  margin-top: 3px;
+  border: none;
+  background: none;
+}
+
+/*
 input.ng-invalid {
   border: 1px solid red;
-}
-input.ng-valid {
-  border: 1px solid green;
-}
+}*/
+
 
