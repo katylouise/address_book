@@ -2,26 +2,26 @@
 <form name="addContact" novalidate>
   <div class="form-group">
     <label>First Name</label>
-    <input name="first_name" type="text" ng-model="contact.first_name" required>
+    <input class="form-control" name="first_name" type="text" ng-model="contact.first_name" required>
     <span class="error" ng-show="addContact.first_name.$invalid && contactCtrl.submitted">First name is required.</span>
   </div>
   <div class="form-group">
     <label>Surname</label>
-    <input name="surname" type="text" ng-model="contact.surname" required>
+    <input class="form-control" name="surname" type="text" ng-model="contact.surname" required>
     <span class="error" ng-show="addContact.surname.$invalid && contactCtrl.submitted">Surname is required.</span>
   </div>
   <div class="form-group">
     <label>Address</label>
-    <textarea ng-model="contact.address"></textarea>
+    <textarea class="form-control" ng-model="contact.address"></textarea>
   </div>
   <div class="form-group">
     <label>Phone Number</label>
-    <input type="number" ng-model="contact.phone_number">
+    <input class="form-control" type="number" ng-model="contact.phone_number">
   </div>
   <div class="form-group">
     <label>Email</label>
-    <input type="email" ng-model="contact.email">
+    <input class="form-control" type="email" ng-model="contact.email">
   </div>
-  <input type="submit" class="btn btn-success btn-lg btn-block add-btn" value="Submit" ng-click="contactCtrl.addContact(contact)">
+  <input type="submit" class="add-btn btn btn-success btn-block" value="Submit" ng-click="contactCtrl.addContact(contact)">
 </form>
 

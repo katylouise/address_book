@@ -86,9 +86,9 @@ describe ('ContactsController', function() {
     }));
 
     it('can delete a contact from the address book', function() {
-      httpBackend.flush();
       ctrl.searchTerm = "Gareth";
       ctrl.searchForContact();
+      httpBackend.flush();
       ctrl.deleteContact();
       expect(ctrl.result).toEqual("Deleted contact!");
 

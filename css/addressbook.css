@@ -1,5 +1,44 @@
 body {
+  font-family: 'Lato', sans-serif;
   z-index: 1;
+  background: #50D8BB;
+}
+
+.container {
+  width: 700px;
+  margin: 0 auto;
+  background: #50D8BB;
+}
+
+header {
+  margin-top: 20px;
+  position: relative;
+}
+
+
+header .btn {
+  background: #EDE6E3;
+}
+
+header .btn:hover {
+  background: #DADAD9;
+}
+header h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  position: absolute;
+  right: 0;
+}
+
+.search-box {
+  margin-right: 5px;
+}
+
+.messages {
+  font-weight: bold;
 }
 
 .single-contact, .update-contact-form, .add-contact-form {
@@ -10,19 +49,43 @@ body {
   padding: 30px;
   border: 2px solid black;
   border-radius: 8px;
-  width: 500px;
+  width: 400px;
   z-index: 2;
+}
+
+input[type="text"], input[type="email"], input[type="number"], textarea {
+  border-radius: 4px;
 }
 
 .glyphicon-remove {
   display: block;
   float: right;
-  margin-right: 3px;
-  margin-top: 3px;
+  margin-right: -20px;
+  margin-top: -20px;
   border: none;
   background: none;
 }
 
+.btn-success {
+  background: #50D8BB;
+  border: 2px solid #47C1A7;
+}
+
+.btn-success:hover {
+  background: #58EFCE;
+}
+
+.update-btn, .delete-btn {
+  float: left;
+  width: 75px;
+  margin-top: 10px;
+  margin-left: 65px;
+}
+
+.list-group-item {
+  margin: 20px 0;
+  border-radius: 4px;
+}
 /*
 input.ng-invalid {
   border: 1px solid red;

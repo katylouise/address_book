@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Address Book</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/addressbook.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -13,13 +14,18 @@
     <script src="js/updateFactory.js"></script>
   </head>
   <body ng-controller="ContactsController as contactCtrl">
-    <div>
-      <form class="form-horizontal">
-        <input type="text" ng-model="contactCtrl.searchTerm">
-        <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
-        <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
-      </form>
-      <div ng-show="contactCtrl.showMessage" class="messages">{{ contactCtrl.result }}</div>
+    <div class="container">
+      <header>
+        <h1>Address Book</h1>
+        <form class="form-horizontal search-bar">
+          <input class="search-box" type="text" ng-model="contactCtrl.searchTerm">
+          <button class="btn search-button" ng-click="contactCtrl.searchForContact()">Search</button>
+        </form>
+        <form class="form-horizontal addBar">
+          <button class="btn add-contact-button" ng-click="contactCtrl.showAddContacts()">Add Contact</button>
+        </form>
+        <div ng-show="contactCtrl.showMessage" class="messages">{{ contactCtrl.result }}</div>
+      </header>
       <div class="all-contacts">
         <ul class="list-group list-unstyled">
           <li class="list-group-item" ng-repeat="contact in contactCtrl.contactsList | orderBy: 'surname'">
