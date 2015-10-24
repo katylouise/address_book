@@ -10,7 +10,7 @@ addressBookApp.controller('ContactsController', ['$resource', '$timeout', 'Updat
 
   self.searchForContact = function() {
     for (var i = 0; i < self.contactsList.length; i++) {
-      if (self.contactsList[i].first_name === self.searchTerm || self.contactsList[i].surname === self.searchTerm) {
+      if (self.contactsList[i].first_name.toLowerCase() === self.searchTerm.toLowerCase() || self.contactsList[i].surname.toLowerCase() === self.searchTerm.toLowerCase()) {
         position = i;
         contactID = self.contactsList[i].id;
         self.contact = Contact.get({ id: contactID });
