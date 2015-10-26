@@ -76,23 +76,17 @@ describe ('ContactsController', function() {
   });
 
   describe('deleting contacts', function() {
-    var formData = {
-      first_name: "Gareth",
-      surname: "Billington"
-    }
 
     beforeEach(inject(function($httpBackend) {
-      httpBackend.whenDELETE("https://fast-gorge.herokuapp.com/contacts/6791")
+      httpBackend.whenDELETE("https://fast-gorge.herokuapp.com/contacts")
       .respond(200, { response: contacts[0] });
     }));
 
     it('can delete a contact from the address book', function() {
-      ctrl.searchTerm = "Gareth";
-      ctrl.searchForContact();
+      ctrl.contactID = 6791;
       httpBackend.flush();
       ctrl.deleteContact();
       expect(ctrl.result).toEqual("Deleted contact!");
-
     });
   });
 });

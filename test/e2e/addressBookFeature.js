@@ -47,13 +47,5 @@ describe('Address Book', function() {
     expect(element.all(by.tagName('span')).get(0).getText()).toEqual('First name is required.');
     expect(addContactForm.isDisplayed()).toBeTruthy();
   });
-
-  xit('adds a contact to the list', function() {
-    firstNameInput.sendKeys('bex');
-    element.all(by.buttonText('Submit')).get(0).click();
-    //submitButton.click();
-    expect(contacts.get(2).element(by.binding('contact.first_name')).getText()).toEqual('bex');
-  });
-
 });
 
