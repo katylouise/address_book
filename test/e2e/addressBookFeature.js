@@ -9,7 +9,6 @@ describe('Address Book', function() {
   var errorBox = element(by.tagName('span'));
   var firstNameInput = element(by.model('contact.first_name'));
   var surnameInput = element(by.model('contact.surname'));
-  var cancelButton = element(by.className('.glyphicon-remove'));
 
   it('displays the title', function() {
     browser.get('http://localhost:8080');
@@ -42,11 +41,18 @@ describe('Address Book', function() {
   });
 
   it('requires a firstname for the add contact form to be valid', function() {
-    surnameInput.sendKeys('appleyard');
+    surnameInput.sendKeys('Surname');
     firstNameInput.clear();
     submitButton.click();
     expect(element.all(by.tagName('span')).get(0).getText()).toEqual('First name is required.');
     expect(addContactForm.isDisplayed()).toBeTruthy();
+  });
+
+  xit('adds a contact to the list', function() {
+    firstNameInput.sendKeys('bex');
+    element.all(by.buttonText('Submit')).get(0).click();
+    //submitButton.click();
+    expect(contacts.get(2).element(by.binding('contact.first_name')).getText()).toEqual('bex');
   });
 
 });

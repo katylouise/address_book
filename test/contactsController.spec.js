@@ -68,9 +68,10 @@ describe ('ContactsController', function() {
     }));
 
     it('can add a contact to the address book', function() {
+      ctrl.addContact.$valid = true;
       ctrl.addContact(newContact);
       httpBackend.flush();
-      expect(ctrl.result).toEqual("Success!");
+      expect(ctrl.result).toEqual("Contact added successfully!");
     });
   });
 
