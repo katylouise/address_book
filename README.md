@@ -20,12 +20,15 @@ npm test
 ```
 
 To run protractor tests:
+
 ```
 http-server
 ```
+
 ```
 webdriver-manager start
 ```
+
 ```
 protractor test/e2e/conf.js
 ```
