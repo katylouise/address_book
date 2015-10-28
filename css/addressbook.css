@@ -22,9 +22,13 @@ header .btn {
 header .btn:hover {
   background: #DADAD9;
 }
+
 header h1 {
+  font-family: 'Poiret One', sans-serif;
+  font-size: 60px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .search-bar {
