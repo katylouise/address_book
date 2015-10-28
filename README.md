@@ -1,6 +1,6 @@
 # Address Book
 
-Simple address book application built using Angular.  A user can view, add, edit and delete contacts.
+Simple address book application built using Angular and tested with Karma and Protractor.  A user can view, add, edit and delete contacts.
 
 # Getting Started
 
