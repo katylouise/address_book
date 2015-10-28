@@ -32,3 +32,5 @@ webdriver-manager start
 ```
 protractor test/e2e/conf.js
 ```
+
+I am still working on the testing of the app.  I have been having difficulties with testing all the http requests in karma.  Additionally, with protractor, I have been having issues with protractor being unable to find certain elements on the page.  This might be to do with using ng-show and hide?  I need to investigate this further.
